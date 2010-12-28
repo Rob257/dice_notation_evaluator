@@ -1,0 +1,3 @@
+page.replace_html("help_id" , :partial => "help")
+page.replace_html("help_link" , :partial => "help_link")
+

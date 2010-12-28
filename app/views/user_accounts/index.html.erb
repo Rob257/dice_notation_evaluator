@@ -1,0 +1,24 @@
+<h1>Listing user_accounts</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @user_accounts.each do |user_account| %>
+  <tr>
+    <td><%= user_account.name %></td>
+    <td><%= link_to 'Show', user_account %></td>
+    <td><%= link_to 'Edit', edit_user_account_path(user_account) %></td>
+    <td><%= link_to 'Destroy', user_account, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User account', new_user_account_path %>
+

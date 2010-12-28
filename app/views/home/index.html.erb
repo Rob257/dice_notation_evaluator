@@ -1,0 +1,43 @@
+<% if @user %>
+
+  <% unless @user.user_notations.empty? %>
+    <table id="user_notation_list">
+      <%= render :partial => "user_notation_list",
+                 :collection => @user.user_notations %>
+    </table>
+  <% end %>
+
+  <table id='save_dice'>
+    <tr>
+      <td>
+        <%= form_tag( { :controller => 'user',
+                       :action => 'save_notation' },
+                      :method => :post ) do %>
+           <%= submit_tag "Save" %>
+           <%= text_field_tag :dice %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+
+<% end -%>
+
+<table id='evaluate_dice_table'>
+  <tr>
+    <td>
+      <%= form_tag( { :controller => 'home',
+                     :action => 'evaluate' },
+                    :method => :put,
+                    :remote => true ) do %>
+         <%= text_field_tag :dice, @dn.notation %>
+         <%= hidden_field_tag :dice_old, 'evalu' %>
+         <%= submit_tag "Roll" %>
+      <% end %>
+    </td>
+    <% @dn.notation = 'evalu' %>
+    <%= render :partial => 'evaluate', :object => @dn %>
+  </tr>
+</table>
+
+<%= render 'help' %>
+

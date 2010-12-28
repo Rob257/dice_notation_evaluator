@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @user.name %></h1>
+
+<table>
+  <tr>
+    <td><%= link_to 'Logout', :action=>'logout' %></td>
+    <td><%= link_to 'Edit', :action=>'edit' %></td>
+    <td><%= link_to 'Destroy',
+                    { :action=>'destroy' },
+                    :confirm => 'Are you sure?',
+                    :method => :delete %></td>
+  </tr>
+</table>
+

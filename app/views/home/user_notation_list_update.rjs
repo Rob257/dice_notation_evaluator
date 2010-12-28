@@ -1,0 +1,2 @@
+page.replace_html("user_notation" , { :partial => "user_notation", :object => @dn })
+

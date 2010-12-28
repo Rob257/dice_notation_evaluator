@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  notation: MyString
+  result: 1.5
+  user_account: 
+
+two:
+  notation: MyString
+  result: 1.5
+  user_account: 

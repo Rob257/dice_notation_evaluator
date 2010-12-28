@@ -1,0 +1,58 @@
+body {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+div.container {
+    width: 50em;
+    margin:1em;
+    margin-left: auto;
+    margin-right:auto;
+    border:0.1em solid #aac;
+    line-height: 1.5em;
+    background-color: #eef;
+
+}
+
+div.header, div.footer {
+    padding:0.5em;
+    color:white;
+    background-color:#aac;
+    clear:left;
+}
+
+h1.header {
+    padding:0;
+    margin:0;
+}
+
+div.sidebar {
+    float:left;
+    width: 6em;
+    margin:0;
+    padding:0.5em;
+    border-right:0.1em solid #aac;
+}
+div.sidebar ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+div.sidebar li {
+    /* float:left; /* this is for horzontal menus */
+}
+div.sidebar a {
+    display:block;
+    width:6em;
+    border: 0.1em outset #aac;
+    background-color: #ddf;
+    text-align:center;
+}
+
+div.content {
+    margin-left: 7em;
+    border-left:0.1em solid #aac;
+    padding:0.5em;
+}
+

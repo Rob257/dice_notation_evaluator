@@ -1,0 +1,64 @@
+<div id="dice_help">
+<h1>Notation...</h1>
+<ul>
+<li>n = number of faces, or name of die.</li>
+<li>D = 1 bias die. D10 = 1 thru 10. Dn. D10</li>
+<li>Z = 0 bias die. Z10 = 0 thru 9. Zn. Z10</li>
+<li>q = quantity (defaults to 1 if no q). qDn. 4D6</li>
+<li>KH = keep highest. qDnKH. 4D6KH</li>
+<li>KL = keep lowest. qDnKL. 4D6KL</li>
+<li>j = quantity to keep. qDnKHj. 4D6KH2</li>
+<li>m = modifier. Can be a simple number, or more complex notation.</li>
+<li>+ = add modifier. qDn+m. D20+5</li>
+<li>- = subtract modifier. qDn-m. D20-5</li>
+<li>* = multiply by modifier. qDn*m. D20*2</li>
+<li>/ = divide by modifier. qDn/m. D20/2</li>
+<li>() = precedence. (qDn+m)*m. (4D7+5)*D3</li>
+</ul>
+<% if false -%>
+  <h1>Modification...</h1>
+  <ul>
+  <li>If you call roll with a modifier or multiplier,
+  '+A', '-A', '*M', '/M'
+  it will be attached to the attr_accessor :dice and rolled</li>
+  <li>d.dice = '2d6'</li>
+  <li>d.roll('+7')</li>
+  <li>=> '2d6+7'</li>
+  </ul>
+<% end -%>
+<h1>Named Dice...</h1>
+<ul>
+<li>% = D% or Z% = percentile or zero biased percentile. Converted to D100 or Z100</li>
+<li>F = DF = standard FUDGE die. Converted to C(Z3-1)</li>
+<li>F# = DF# = FUDGE variant, only one + and - on a die of # faces. 4DF6. Converted to C((Z#-1)/(#-2))RD</li>
+</ul>
+<h1>Compound Dice...</h1>
+<ul>
+<li>C = a compound die. qC(qDn+m)</li>
+<li>RU = round up. qC(qDn+m)RU</li>
+<li>RD = round down. qC(qDn+m)RD</li>
+<li>For example, a FUDGE die is really Z3-1,
+so 4DF is Z3-1 rolled 4 times.</li>
+<li>4DF is converted to 4C(Z3-1)</li>
+<li>As opposed to 4D(Z3-1) which would first
+find the value of Z3-1 and roll a die of
+that value 4 times.</li>
+<li>4DF6 is converted to 4C((Z6-1)/4)RD</li>
+<li>If you'd like to round a whole equation you
+can stick it in a compound die like so C(4D6/4)RU</li>
+<li>When using RU and RD put it before KH and KL. 6C(4D6/4)RDKH3</li>
+</ul>
+<% if false %>
+<h1>Known Issues...</h1>
+<ul>
+<li>If a dies face count is negative the
+positive value will be used.</li>
+<li>If it is 0 it will become 1.</li>
+<li>Division by zero will equal 0 instead of an error.</li>
+</ul>
+</div>
+<% end %>
+<%-#FIXME if a dies face count is negative it should roll with positive value and return the result as negative value %>
+<%-#FIXME a 0 faced die should return 0 %>
+<%-#FIXME division by zero %>
+

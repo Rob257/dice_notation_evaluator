@@ -1,0 +1,26 @@
+<tr>
+  <td>
+    <%= button_to "Delete",
+                { :controller => 'user',
+                  :action => 'delete_notation',
+                  :id => user_notation_list.id },
+                :method => :delete,
+                :confirm => 'Are you sure you wish to delete this saved notation?',
+                :class => "delete_image" %>
+  </td>
+  <td class='result'>
+    <%= user_notation_list.notation %>
+  </td>
+  <td>
+    <%= form_tag( { :controller => 'home',
+                   :action => 'evaluate' },
+                  :method => :put,
+                  :remote => true ) do %>
+       <%= submit_tag "Roll", :class => "submit_image" %>
+       <%= hidden_field_tag :dice, user_notation_list.notation %>
+       <%= hidden_field_tag :dice_old, user_notation_list.notation %>
+    <% end %>
+  </td>
+  <%= render :partial => 'evaluate', :object => user_notation_list %>
+</tr>
+

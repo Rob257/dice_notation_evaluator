@@ -1,0 +1,6 @@
+page.replace_html("result_#{@dn_old}" , { :partial => "evaluate", :object => @dn })
+
+page["result_#{@dn_old}"].visual_effect :highlight,
+                                        :startcolor => "#00ff00",
+                                        :endcolor => "#eeffee"
+

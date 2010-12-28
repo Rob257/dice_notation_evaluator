@@ -1,0 +1,14 @@
+<div id='help_link'>
+  <% if session[:help] == 'show' -%>
+    <%= link_to 'Hide Help',
+                { :controller => 'home',
+                  :action => 'hide_help' },
+                :remote => true %>
+  <% else -%>
+    <%= link_to 'Show Help',
+                { :controller => 'home',
+                  :action => 'show_help' },
+                :remote => true %>
+  <% end -%>
+</div>
+

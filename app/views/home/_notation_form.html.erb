@@ -1,0 +1,9 @@
+<%= form_tag( { :controller => 'home',
+               :action => 'evaluate' },
+              :method => :put,
+              :remote => true ) do %>
+   <%= submit_tag "Roll" %>
+   <%= text_field_tag :dice, notation_form.notation %>
+   <%= hidden_field_tag :dice_old, notation_form.notation %>
+<% end %>
+

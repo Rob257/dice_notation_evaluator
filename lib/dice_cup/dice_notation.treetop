@@ -1,0 +1,102 @@
+grammar DiceNotation
+  rule expression
+    additive
+  end
+
+  rule additive
+    operand_1:multitive
+    operator:additive_op
+    operand_2:additive
+    {
+      def evaluate(env={})
+        operator.apply(operand_1.evaluate(env),operand_2.evaluate(env))
+      end
+    }
+    /
+    multitive
+  end
+
+  rule additive_op
+    '+'
+    {
+      def apply(a,b)
+        a + b
+      end
+    }
+    /
+    '-'
+    {
+      def apply(a,b)
+        a - b
+      end
+    }
+  end
+
+  rule multitive
+    operand_1:dice
+    operator:multitive_op
+    operand_2:multitive
+    {
+      def evaluate(env={})
+        operator.apply(operand_1.evaluate(env),operand_2.evaluate(env))
+      end
+    }
+    /
+    dice
+  end
+
+  rule multitive_op
+    '*'
+    {
+      def apply(a,b)
+        a * b
+      end
+    }
+    /
+    '/'
+    {
+      def apply(a,b)
+        if b == 0
+            0         # FIXME incorrect division by zero
+        else
+            a / b
+        end
+      end
+    }
+  end
+
+rule dice
+    quantity:primary
+    dice_op:( 'd' / 'z' / 'c' )
+    faces:primary
+    round:( ( 'ru' / 'rd' ) / ' '* )
+    keep:( ( 'kh' / 'kl' ) primary / ' '* )
+    <DiceOperation>
+    /
+    primary
+  end
+
+  rule primary
+    number
+    /
+    nest
+  end
+
+  rule number
+    '-'? [0-9] [0-9]* '.'? [0-9]* {
+      def evaluate(env={})
+        text_value.to_f
+      end
+    }
+  end
+
+  rule nest
+    '(' expression ')' {
+      def evaluate(env={})
+        expression.evaluate(env)
+      end
+    }
+  end
+
+end
+
